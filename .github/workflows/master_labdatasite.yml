@@ -35,7 +35,7 @@ jobs:
         run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: php-app
           path: release.zip
@@ -51,7 +51,7 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: php-app
 
@@ -59,14 +59,14 @@ jobs:
         run: unzip release.zip
       
       - name: Login to Azure
-        uses: azure/login@v1
+        uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_E66886D4B5944D9D83CFCDACB761EFCF }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0245F8FEEF634DBC9D09B281C3413666 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_BD71904E74134B36BDF5EF6B9056D568 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_434520D2003542D3954492FBBED74871 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_F705F5C8594E4921886D8CECBEE92CC6 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_26A5E81FDC6742D19C88C2DFF27D2481 }}
 
       - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
           app-name: 'labdatasite'
